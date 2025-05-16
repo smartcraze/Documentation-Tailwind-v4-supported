@@ -1,26 +1,281 @@
 @import "tailwindcss";
+@import "../styles/syntax.css";
+@import "../styles/algolia.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --dark-mode: class;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Define custom theme values (light mode colors and other settings) */
+@theme {
+  /* Colors (light mode, OKLCH) */
+  --color-border: oklch(0.92 0 0);
+  --color-input: oklch(0.92 0 0);
+  --color-ring: oklch(0.71 0 0);
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.15 0 0);
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.15 0 0);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.15 0 0);
+  --color-primary: oklch(0.21 0 0);
+  --color-primary-foreground: oklch(0.99 0 0);
+  --color-secondary: oklch(0.97 0 0);
+  --color-secondary-foreground: oklch(0.21 0 0);
+  --color-muted: oklch(0.97 0 0);
+  --color-muted-foreground: oklch(0.56 0 0);
+  --color-accent: oklch(0.97 0 0);
+  --color-accent-foreground: oklch(0.21 0 0);
+  --color-destructive: oklch(0.58 0.2 0);
+  --color-destructive-foreground: oklch(1 0 0);
+  --color-chart-1: oklch(0.65 0.15 41);
+  --color-chart-2: oklch(0.6 0.15 185);
+  --color-chart-3: oklch(0.4 0.15 227);
+  --color-chart-4: oklch(0.83 0.15 84);
+  --color-chart-5: oklch(0.77 0.15 70);
+  --color-sidebar: oklch(0.99 0 0);
+  --color-sidebar-foreground: oklch(0.15 0 0);
+  --color-sidebar-primary: oklch(0.21 0 0);
+  --color-sidebar-primary-foreground: oklch(0.99 0 0);
+  --color-sidebar-accent: oklch(0.97 0 0);
+  --color-sidebar-accent-foreground: oklch(0.21 0 0);
+  --color-sidebar-border: oklch(0.92 0 0);
+  --color-sidebar-ring: oklch(0.71 0 0);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Border Radius */
+  --border-radius-lg: 0.625rem;
+  --border-radius-md: calc(0.625rem - 2px);
+  --border-radius-sm: calc(0.625rem - 4px);
+
+  /* Font Families */
+  --font-family-code: var(--font-geist-mono);
+  --font-family-regular: var(--font-geist-sans);
+  --font-family-sans: ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --font-family-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  /* Container */
+  --container-padding: 2rem;
+  --container-max-width-2xl: 1550px;
+
+  /* Shadows */
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 2px 4px -1px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 4px 6px -1px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 8px 10px -1px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+
+  /* Keyframes for animations */
+  --keyframes-accordion-down: {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  --keyframes-accordion-up: {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
 }
 
+.dark {
+  --color-background: oklch(0.04 0.03 240);
+  --color-foreground: oklch(0.98 0 0);
+  --color-card: oklch(0.04 0.03 240);
+  --color-card-foreground: oklch(0.98 0 0);
+  --color-popover: oklch(0.04 0.03 240);
+  --color-popover-foreground: oklch(0.98 0 0);
+  --color-primary: oklch(0.98 0 0);
+  --color-primary-foreground: oklch(0.1 0.03 240);
+  --color-secondary: oklch(0.16 0.02 240);
+  --color-secondary-foreground: oklch(0.98 0 0);
+  --color-muted: oklch(0.16 0.02 240);
+  --color-muted-foreground: oklch(0.65 0.02 240);
+  --color-accent: oklch(0.16 0.02 240);
+  --color-accent-foreground: oklch(0.98 0 0);
+  --color-destructive: oklch(0.31 0.15 0);
+  --color-destructive-foreground: oklch(0.97 0.05 0);
+  --color-border: oklch(0.16 0.02 240);
+  --color-input: oklch(0.16 0.02 240);
+  --color-ring: oklch(0.84 0.02 240);
+  --color-chart-1: oklch(0.5 0.15 220);
+  --color-chart-2: oklch(0.45 0.15 160);
+  --color-chart-3: oklch(0.55 0.15 30);
+  --color-chart-4: oklch(0.6 0.15 280);
+  --color-chart-5: oklch(0.55 0.15 340);
+  --color-sidebar: oklch(0.1 0.03 240);
+  --color-sidebar-foreground: oklch(0.96 0.02 240);
+  --color-sidebar-primary: oklch(0.48 0.15 224.3);
+  --color-sidebar-primary-foreground: oklch(1 0 0);
+  --color-sidebar-accent: oklch(0.16 0.02 240);
+  --color-sidebar-accent-foreground: oklch(0.96 0.02 240);
+  --color-sidebar-border: oklch(0.16 0.02 240);
+  --color-sidebar-ring: oklch(0.84 0.02 240);
+}
+
+/* Define container utility */
+@utility container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: 100%;
+  @media (min-width: 1536px) {
+    max-width: var(--container-max-width-2xl);
+  }
+}
+
+/* Animation utilities */
+@utility accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+@utility accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
+/* Base styles */
+:root {
+  font-variant-ligatures: none;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-geist-sans);
+}
+
+/* Typography styles (enhanced from v3) */
+.prose {
+  color: var(--color-foreground);
+  max-width: 65ch;
+  font-family: var(--font-family-regular);
+  margin: 0;
+}
+.prose h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.prose h2 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.prose p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+.prose a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.prose ul,
+.prose ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+.prose li {
+  margin-bottom: 0.5rem;
+}
+.prose code {
+  font-family: var(--font-geist-mono);
+  background-color: var(--color-muted);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+/* Code block styles */
+pre {
+  padding: 2px 0;
+  width: inherit;
+  overflow-x: auto;
+}
+pre > code {
+  display: grid;
+  max-width: inherit;
+  padding: 14px 0;
+}
+.code-line {
+  padding: 0.75px 16px;
+  border-left: 2px solid transparent;
+}
+.line-number::before {
+  display: inline-block;
+  width: 1rem;
+  margin-right: 22px;
+  margin-left: -2px;
+  color: rgb(110, 110, 110);
+  content: attr(line);
+  font-size: 13.5px;
+  text-align: right;
+}
+.highlight-line {
+  background-color: oklch(0.21 0 0 / 0.05);
+  border-left: 2px solid oklch(0.21 0 0 / 0.3);
+}
+.rehype-code-title {
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 1.25rem;
+  margin-bottom: -2.5rem;
+  font-family: var(--font-family-code);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.highlight-comp > code {
+  background-color: transparent;
+}
+td > code {
+  word-break: keep-all;
+}
+
+/* Custom scrollbar */
+:root {
+  --scrollbar-thumb: rgba(113, 113, 122, 0.6);
+}
+.dark {
+  --scrollbar-thumb: rgba(160, 160, 160, 0.4);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-track {
+  background-color: transparent;
 }
