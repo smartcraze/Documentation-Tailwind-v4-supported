@@ -1,8 +1,15 @@
 import { ComponentProps } from "react";
-import NextImage from "next/image";
+import NextImage, { StaticImageData } from "next/image";
 
 type Height = ComponentProps<typeof NextImage>["height"];
 type Width = ComponentProps<typeof NextImage>["width"];
+
+type ImageProps = {
+  src: string | StaticImageData;
+  alt?: string;
+  width?: Width;
+  height?: Height;
+} & Omit<ComponentProps<"img">, "src" | "width" | "height" | "alt">;
 
 export default function Image({
   src,
@@ -10,14 +17,15 @@ export default function Image({
   width = 800,
   height = 350,
   ...props
-}: ComponentProps<"img">) {
+}: ImageProps) {
   if (!src) return null;
+
   return (
     <NextImage
       src={src}
       alt={alt}
-      width={width as Width}
-      height={height as Height}
+      width={width}
+      height={height}
       quality={40}
       {...props}
     />

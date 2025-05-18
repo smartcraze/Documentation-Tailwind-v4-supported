@@ -10,7 +10,6 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  // Extend Next.js and TypeScript configurations
   ...compat.config({
     env: {
       browser: true,
@@ -18,18 +17,17 @@ const eslintConfig = [
       es2021: true,
     },
     extends: [
-      "next", // Next.js recommended rules
-      "plugin:@typescript-eslint/recommended", // TypeScript recommended rules
+      "next/core-web-vitals", // more production-focused than just "next"
+      "plugin:@typescript-eslint/recommended",
     ],
-    parser: "@typescript-eslint/parser", // TypeScript parser
-    plugins: ["@typescript-eslint"], // TypeScript ESLint plugin
+    parser: "@typescript-eslint/parser",
+    plugins: ["@typescript-eslint"],
     rules: {
-      // Your existing rules
-      "react/no-unescaped-entities": "off",
-      "@next/next/no-page-custom-font": "off",
-      // Disable the problematic TypeScript rule
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/ban-ts-comment": "off"
+      // Reasonable overrides
+      "react/no-unescaped-entities": "warn", // not "off" in prod; just warn
+      "@next/next/no-page-custom-font": "warn", // allow flexibility, but still get warning
+      "@typescript-eslint/no-explicit-any": "warn", // discourage in prod
+      "@typescript-eslint/ban-ts-comment": "warn", // allows, but shows warning
     },
   }),
 ];

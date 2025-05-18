@@ -4,6 +4,7 @@ import { Navbar } from "@/components/navbar";
 import { Space_Mono, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/footer";
 import "./globals.css";
+import '@docsearch/css';
 
 const sansFont = Space_Grotesk({
   subsets: ["latin"],

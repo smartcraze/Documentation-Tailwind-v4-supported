@@ -12,15 +12,27 @@ export default function Note({
   title = "Note",
   type = "note",
 }: NoteProps) {
-  const noteClassNames = clsx({
-    "dark:bg-stone-950/25 bg-stone-50": type == "note",
-    "dark:bg-red-950 bg-red-100 border-red-200 dark:border-red-900":
-      type === "danger",
-    "dark:bg-orange-950 bg-orange-100 border-orange-200 dark:border-orange-900":
-      type === "warning",
-    "dark:bg-green-950 bg-green-100 border-green-200 dark:border-green-900":
-      type === "success",
-  });
+  const noteClassNames = clsx(
+    "border rounded-md p-4",
+    {
+      // Note (neutral)
+      "bg-stone-50 text-stone-900 dark:bg-stone-900/30 dark:text-stone-100 border-stone-200 dark:border-stone-800":
+        type === "note",
+
+      // Danger (red)
+      "bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-100 border-red-300 dark:border-red-800":
+        type === "danger",
+
+      // Warning (orange/amber)
+      "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-100 border-amber-300 dark:border-amber-800":
+        type === "warning",
+
+      // Success (green)
+      "bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100 border-emerald-300 dark:border-emerald-800":
+        type === "success",
+    }
+  );
+
 
   return (
     <div

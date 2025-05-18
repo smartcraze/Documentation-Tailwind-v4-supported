@@ -166,7 +166,6 @@ body {
   font-family: var(--font-geist-sans);
 }
 
-/* Typography styles (enhanced from v3) */
 .prose {
   color: var(--color-foreground);
   max-width: 65ch;
@@ -237,9 +236,9 @@ pre > code {
   border-left: 2px solid oklch(0.21 0 0 / 0.3);
 }
 .rehype-code-title {
-  padding: 0.5rem;
+  padding: 1rem;
   width: 100%;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-top: 1.25rem;
   margin-bottom: -2.5rem;
@@ -253,8 +252,13 @@ pre > code {
 }
 td > code {
   word-break: keep-all;
+  margin: 20px;
 }
 
+td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
 /* Custom scrollbar */
 :root {
   --scrollbar-thumb: rgba(113, 113, 122, 0.6);
